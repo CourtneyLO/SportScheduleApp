@@ -1,11 +1,10 @@
 import express, { Router } from 'express';
-import { index } from './controllers/Tournaments';
+import { index } from './controllers/Tournament';
 
 
 const router = Router();
 
-  router.route("/", (req, res, next) =>
-    .get(index)
-  )
+  router.route("/tournaments.json")
+    .get(index);
 
 export default router;

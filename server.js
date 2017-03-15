@@ -1,10 +1,17 @@
 import express from 'express';
+import mongoose from 'mongoose';
+import morgan from 'morgan';
+import router from './router';
+
+mongoose.connect("mongodb://localhost/tournament");
 
 const app = express();
 
-app.get('/', (req, res, next) => 
-  res.send("Hello World!")
-)
+app.use(morgan('dev'));
+
+app.use('/v1', router)
+
+
 
 const server = app.listen(3000, () => {
   const { address, port } = server.address()

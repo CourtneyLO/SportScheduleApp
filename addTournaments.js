@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Tournament from './models/Tournaments';
+import Tournament from './models/Tournament.js';
 
 const sportTournaments = [
   {
@@ -31,7 +31,7 @@ const sportTournaments = [
 
 mongoose.connect("mongodb://localhost/tournament")
 
-sportTournaments.map(sportTournament => {
-  const tournament = new Tournament(sportTournament);
+sportTournaments.map(data => {
+  const tournament = new Tournament(data);
   tournament.save();
 });
