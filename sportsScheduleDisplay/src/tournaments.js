@@ -7,8 +7,26 @@ import {
 
 import { sportTournaments } from './data';
 import TournamentPoster from './TournamentPoster'
+import TournamentPopup from './tournamentPopup'
 
 export default class Sports extends Component {
+
+  state = {
+    popupIsOpen: false,
+  }
+
+  openTournament = (tournament) => {
+    this.setState({
+      popupIsOpen: true,
+      tournament,
+    });
+  }
+
+  closeTournament = () => {
+    this.setState({
+      popupIsOpen: false,
+    });
+  }
 
   render() {
     return (
@@ -24,6 +42,11 @@ export default class Sports extends Component {
             key={index}
           />)}
         </ScrollView>
+        <TournamentPopup
+          tournament={this.state.tournament}
+          isOpen={this.state.popupIsOpen}
+          onClose={this.closeTournament}
+        />
       </View>
     );
   }

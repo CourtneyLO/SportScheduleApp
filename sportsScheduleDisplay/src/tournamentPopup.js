@@ -1,4 +1,4 @@
-import React, { Compment, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Dimensions,
@@ -10,7 +10,7 @@ import {
 
 const { width, height } = Dimensions.get('window');
 
-const defaultHeight = heigth * 0.67;
+const defaultHeight = height * 0.67;
 
 export default class TournamentPopup extends Component {
 
@@ -19,7 +19,7 @@ export default class TournamentPopup extends Component {
     visible: this.props.isOpen
   };
 
-  componentWillRecieveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     console.log(nextProps)
     if (!this.props.isOpen && nextProps.isOpen) {
       this.animateOpen();
@@ -39,36 +39,48 @@ export default class TournamentPopup extends Component {
   }
 
   animateClose() {
-    Animated.timing ()
+    Animated.timing(
       this.state.position, { toValue: height}
-    ).start(() => this.state({ visible: false}));
+    ).start(() => this.setState({ visible: false}));
   }
 
-  return (
-    <View style={styles.conatiner}>
-      {}
-      <TouchableWithoutFeedback onPress={this.props.onClose}>
-        <Animated.View style={styles.backdrop}/>
-      </TouchableWithoutFeedback>
-      <Animated.View
-        style={[styles.modal, {
-          transform: [{ translateY: this.state.position }, { translateX: 0}]
-        }]}
-      >
-        <Text>Popup</Text>
-      </AnimatedView>
-    </View>
-  );
+  render() {
+    if(!this.state.visible) {
+      return null;
+    }
+
+    return (
+      <View style={styles.container}>
+        {}
+        <TouchableWithoutFeedback onPress={this.props.onClose}>
+          <Animated.View style={styles.backdrop}/>
+        </TouchableWithoutFeedback>
+        <Animated.View
+          style={[styles.modal, {
+            transform: [{ translateY: this.state.position }, { translateX: 0}]
+          }]}
+        >
+          <Text>Popup</Text>
+        </Animated.View>
+      </View>
+    );
+  }
+
 }
 
 const styles = StyleSheet.create({
   container: {
-    ...StyleSheet.absoluteFillObject
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
+    backgroundColor: 'transparent',
+  },
+  backdrop: {
+    ...StyleSheet.absoluteFillObject,
     backgroundColor: 'black',
     opacity: 0.5,
   },
   modal: {
-    height: height/2
+    height: height/2,
     backgroundColor: 'white',
   },
 })
