@@ -1,30 +1,31 @@
 import React, { Component, PropTypes } from 'react';
 import {
   View,
-  StyleSheets,
+  StyleSheet,
   Text,
   Dimensions,
   Image,
   TouchableOpacity,
 } from 'react-native';
 
-import { defaultSyles } from './styles';
+import { defaultStyles } from './styles';
 
 const { width, height } = Dimensions.get('window');
 
-const cols = 3, rows = 3;
+const cols = 2, rows = 3;
 
 export default class TournamentPoster extends Component {
 
-  static PropTypes = {
-    tournament: PropTypes.Object.isRequired,
+  static propTypes = {
+    tournament: PropTypes.object.isRequired,
     onOpen: PropTypes.func.isRequired,
   }
 
   render() {
-    const { movie, movie: { title, poster, dates}, isOpen } = this.props
+    const { tournament, tournament: { title, poster, dates}, onOpen } = this.props;
+    console.log(this.props)
     return (
-      <TouchableOpacity styles={styles.container} onPress={() => onOpen(tournament)}>
+      <TouchableOpacity style={styles.container} onPress={() => onOpen(tournament)}>
         <View style={styles.imageContainer}>
           <Image source={{ uri: poster }} style={styles.image}/>
         </View>
@@ -35,22 +36,24 @@ export default class TournamentPoster extends Component {
   }
 }
 
-const styles = StyleSheets.create({
+const styles = StyleSheet.create({
   container: {
     marginLeft: 10,
     marginBottom: 10,
     height: (height - 20 -20) / rows - 10,
-    width: (width - 10)/ cols - 10,
+    width: (width - 5)/ cols - 5,
   },
   imageContainer: {
     flex: 1,
   },
   image: {
-    borderRadius: 10,
     ...StyleSheet.absoluteFillObject,
   },
+  title: {
+    textAlign: 'center',
+  },
   dates: {
-    ...defaultSyles.text
+    ...defaultStyles.text,
     color: '#BBBBBB',
     fontSize: 12,
     lineHeight: 14,
