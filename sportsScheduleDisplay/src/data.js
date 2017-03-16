@@ -6,7 +6,7 @@ export const sportTournaments = [
   },
   {
     title: "Rugby Championship",
-    poster: "http://www.tsmplug.com/wp-content/uploads/2015/08/Rugby-Championship-Fixture-2015.jpg",
+    poster: "http://a4.mzstatic.com/us/r30/Purple5/v4/1c/55/fe/1c55feab-ac86-8b4c-7700-ff3406483c25/icon175x175.png",
     dates: "19 August 2017 - 16 September 2017"
   },
   {
@@ -16,7 +16,7 @@ export const sportTournaments = [
   },
   {
     title: "Curry Cup Rugby",
-    poster: "https://upload.wikimedia.org/wikipedia/en/thumb/4/4b/Currie_cup_logo.jpg/250px-Currie_cup_logo.jpg",
+    poster: "https://upload.wikimedia.org/wikipedia/en/4/4b/Currie_cup_logo.jpg",
     dates: "5 August 2017 - 15 October 2017"
   },
   {

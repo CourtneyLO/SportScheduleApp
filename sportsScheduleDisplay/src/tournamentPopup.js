@@ -20,7 +20,6 @@ export default class TournamentPopup extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
     if (!this.props.isOpen && nextProps.isOpen) {
       this.animateOpen();
     }
