@@ -12,7 +12,7 @@ import { defaultStyles } from './styles';
 
 const { width, height } = Dimensions.get('window');
 
-const cols = 2, rows = 3;
+const cols = 2, rows = 2;
 
 export default class TournamentPoster extends Component {
 
@@ -23,7 +23,6 @@ export default class TournamentPoster extends Component {
 
   render() {
     const { tournament, tournament: { title, poster, dates}, onOpen } = this.props;
-    console.log(this.props)
     return (
       <TouchableOpacity style={styles.container} onPress={() => onOpen(tournament)}>
         <View style={styles.imageContainer}>
@@ -41,13 +40,17 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginBottom: 10,
     height: (height - 20 -20) / rows - 10,
-    width: (width - 5)/ cols - 5,
+    width: (width - 10)/ cols - 10,
   },
   imageContainer: {
     flex: 1,
   },
   image: {
     ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'contain',
   },
   title: {
     textAlign: 'center',
