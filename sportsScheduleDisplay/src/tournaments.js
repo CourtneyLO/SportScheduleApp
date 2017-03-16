@@ -14,7 +14,7 @@ export default class Sports extends Component {
     return (
       <View>
         <ScrollView>
-          {sportTournaments.map((tournament, index) => <Text>{tournement.title}</Text>)}
+          {sportTournaments.map((tournament, index) => <Text>{tournament.title}</Text>)}
         </ScrollView>
       </View>
     );

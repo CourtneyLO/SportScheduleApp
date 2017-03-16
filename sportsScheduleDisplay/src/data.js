@@ -1,4 +1,4 @@
-const sportTournaments = [
+export const sportTournaments = [
   {
     title: "Super Rugby",
     poster: 'https://upload.wikimedia.org/wikipedia/en/thumb/7/78/SupeRugby_Logo.svg/1024px-SupeRugby_Logo.svg.png',
