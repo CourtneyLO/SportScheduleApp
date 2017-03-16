@@ -6,7 +6,7 @@ export const sportTournaments = [
   },
   {
     title: "Rugby Championship",
-    poster: "http://a4.mzstatic.com/us/r30/Purple5/v4/1c/55/fe/1c55feab-ac86-8b4c-7700-ff3406483c25/icon175x175.png",
+    poster: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRyyGx5bsEdlRKP8xqJkyUFYXBA_g59qXwIM8jqcB-k87kTLIRW", 
     dates: "19 August 2017 - 16 September 2017"
   },
   {
