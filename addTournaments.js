@@ -9,7 +9,7 @@ const sportTournaments = [
   },
   {
     title: "Rugby Championship",
-    poster: "http://www.tsmplug.com/wp-content/uploads/2015/08/Rugby-Championship-Fixture-2015.jpg",
+    poster: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRyyGx5bsEdlRKP8xqJkyUFYXBA_g59qXwIM8jqcB-k87kTLIRW",
     dates: "19 August 2017 - 16 September 2017"
   },
   {
