@@ -3,7 +3,6 @@ import {
   ListView,
   Dimensions,
   StyleSheet,
-  ScrollView,
   Text,
   View,
   TouchableOpacity,
@@ -17,31 +16,20 @@ import { defaultStyles } from './styles';
 const { width, height } = Dimensions.get('window');
 
 const cols = 2, rows = 2;
-// import { sportTournaments } from './data';
+
 // import TournamentPoster from './TournamentPoster'
-// import TournamentPopup from './tournamentPopup'
+import TournamentPopup from './tournamentPopup'
 
 export default class Sports extends Component {
 
-  // getInitialState = () => {
-  //   return {
-  //     dataSource: new ListView.DataSource({
-  //       rowHasChanged: (row1, row2) => row1 !== row2,
-  //     }),
-  //     loaded: false,
-  //   };
-  // };
   constructor() {
     super();
     this.state = {
+      popupIsOpen: false,
       dataSource: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2,}),
       loaded: false,
     };
   };
-  // state = {
-  //   dataSource: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2,}),
-  //   loaded: false,
-  // }
 
   componentDidMount = () => {
     this.fetchData();
@@ -51,7 +39,6 @@ export default class Sports extends Component {
     fetch(REQUEST_URL)
     .then((response) => response.json())
     .then((responseData) => {
-      // console.log(responseData.tournaments[0])
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(responseData.tournaments),
         loaded: true,
@@ -60,22 +47,19 @@ export default class Sports extends Component {
     .done();
   };
 
-  // state = {
-  //   popupIsOpen: false,
-  // }
 
-  // openTournament = (tournament) => {
-  //   this.setState({
-  //     popupIsOpen: true,
-  //     tournament,
-  //   });
-  // }
-  //
-  // closeTournament = () => {
-  //   this.setState({
-  //     popupIsOpen: false,
-  //   });
-  // }
+  openTournament = (tournament) => {
+    this.setState({
+      popupIsOpen: true,
+      tournament,
+    });
+  }
+
+  closeTournament = () => {
+    this.setState({
+      popupIsOpen: false,
+    });
+  }
 
   render() {
     if (!this.state.loaded) {
@@ -87,6 +71,7 @@ export default class Sports extends Component {
       console.log(this.state.dataSource),
       <ListView
           dataSource={this.state.dataSource}
+          onOpen={this.openTournament}
           renderRow={this.renderTournament}
           style={styles.listView}
       />
@@ -109,11 +94,11 @@ export default class Sports extends Component {
         <TouchableOpacity style={styles.container} onPress={() => onOpen(tournament)}>
           <View style={styles.imageContainer}>
             <Image
-              source={{ uri: tournament.tournament.poster }}
+              source={{ uri: tournament.poster }}
               style={styles.image}/>
           </View>
-          <Text style={styles.title} numberOfLines={1}>{tournament.tournament.title}</Text>
-          <Text style={styles.dates} numberOfLines={1}>{tournament.tournament.dates}</Text>
+          <Text style={styles.title} numberOfLines={1}>{tournament.title}</Text>
+          <Text style={styles.dates} numberOfLines={1}>{tournament.dates}</Text>
         </TouchableOpacity>
       );
     };
@@ -125,6 +110,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     height: (height - 20 -20) / rows - 10,
     width: (width - 10)/ cols - 10,
+  },
+  listView: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   imageContainer: {
     flex: 1,
